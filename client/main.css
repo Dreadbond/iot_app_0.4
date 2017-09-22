@@ -1,0 +1,37 @@
+#value {
+    width: 3em;
+}
+
+#left-column {
+  /* float: right; */
+  position: absolute;
+  left: 20px;
+  height: 20px;
+}
+
+#right-column{
+  position: absolute;
+  right: 20px;
+  height: 20px;
+  /* align-items: right; */
+  /* margin-left: 2cm; */
+  /* float: left; */
+}
+
+
+#chatbox {
+  /* white-space: initial; */
+  text-align:left;
+  margin:0 auto;
+  margin-bottom:25px;
+  padding:10px;
+  background:#fff;
+  height:270px;
+  width:300px;
+  border:1px solid #ACD8F0;
+  white-space: initial;
+  overflow-y: scroll;
+  resize: both;
+
+}
+

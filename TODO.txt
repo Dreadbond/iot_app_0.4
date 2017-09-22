@@ -1,0 +1,8 @@
+Etablir des règles de bases et les données qui vont avec, dans un fichier à part
+******** régler method lecture son
+
+probleme : va falloir commencer à gérer les comptes
+
+remplacer tags par les pseudos
+
+changer fonction render() pour les stats

@@ -1,9 +1,12 @@
 import serialport from 'serialport';
-import objects from './objects.js';
+import './methods.js';
+import './rules/general.js';
+import './objects/objects.js';
+
 
 var thisPlayer = Player.find({name: "Dreadbond"}).fetch[0];
 
-var port = "COM4" ; //process.argv[2];
+var port = "COM5" ; //process.argv[2];
 
 var sp = new serialport.SerialPort(port, {
   baudrate: 9600,
@@ -33,7 +36,7 @@ function onData(incomingData)
             }
         catch(e){console.log("Erreur réception Ardu : ", e)}
 
-            console.log(incomingData);
+            //console.log(incomingData);
         Meteor.call('writeDB', ()=> {
             Player.update({name: "Dreadbond" }, {$set: {"inMessage": mess, "inMessageRead": false}});
         });

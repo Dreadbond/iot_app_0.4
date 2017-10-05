@@ -122,7 +122,12 @@ function stat(asked, asked2, asked3) {
 
          <p>{stat("name")} 
          <br/>ID {stat("_id")} 
-         <br/>Number {stat("number")} 
+         <br/>Number {stat("number")}
+         <br/>Ranged targets :
+            <br/>{stat("rangedTarget","0","number")} at {stat("rangedTarget", "0","distance")} 
+            <br/>{stat("rangedTarget","1","number")} at {stat("rangedTarget", "1","distance")} 
+            <br/>{stat("rangedTarget","2","number")} at {stat("rangedTarget", "2","distance")} 
+            <br/>{stat("rangedTarget","3","number")} at {stat("rangedTarget", "3","distance")} 
           <br/>Frag : {stat("frag")} Death : {stat("death")}
 
           <br/> <img src="/gui/barres/healthbar2.png" style={{width: 20,height: 20}} /> {stat("health")}
@@ -175,16 +180,16 @@ function stat(asked, asked2, asked3) {
               </select>
 
               <select id="param" defaultValue="beenShot">
-                <option value="poisoned">empoisonné</option>
-                <option value="onFire" >enflammé</option>
-                <option value="beenShot" >touché</option>
-                <option value="shield" >bouclier</option>
-                <option value="shieldShot" >shield shot</option>
+                <option value="poisoned">poisoned</option>
+                <option value="onFire" >onFire</option>
+                <option value="beenShot" >beenShot</option>
+                <option value="shield" >shield</option>
+                <option value="shieldShot" >shieldShot</option>
                 <option value="healed" >healed</option>
-                <option value="health" >vie à</option>
-                <option value="shootFB" >tire</option>
-                <option value="sightFB" >sight</option>
-                <option value="!sightFB" >No sight</option>
+                <option value="health" >health (at)</option>
+                <option value="shootFB" >shootFB</option>
+                <option value="sightFB" >sightFB</option>
+                <option value="!sightFB" >!sightFB</option>
               </select>
 
               <input id="value" type="number" defaultValue="1"></input>
@@ -217,7 +222,7 @@ function stat(asked, asked2, asked3) {
 
           <textarea id="manualHubText" rows="3" cols="50"> 
             {
-              '{"to": "!11","from": ":pistol","param": "trigger","value": "1"}'
+              '{"to": "!11","from": ":grimoire","param": "fire","value": "1"}'
             }
             {/* http://objgen.com/json */}
 

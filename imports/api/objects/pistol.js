@@ -16,7 +16,10 @@ let handle = player.observe({
 
                 event = {};
                 event.FROM  = doc.name ;
-                event.TO    = doc.inventory.pistol.directTarget ;
+                event.target_mode = "directTarget";
+                event.TO    = [];
+                event.TO.push(doc.inventory.pistol.directTarget) ;
+                event.hit_mode = "insta" ;
                 event.TYPE  = "damage" ;
                 event.VALUE = 20 ;
 
@@ -33,8 +36,8 @@ let handle = player.observe({
             }
 
     if (action == "target") {
-        target = Meteor.call('targetConv', value) ;
-        Player.update({_id: doc._id}, {$set: {"inventory.pistol.directTarget": target}});
+        //target = Meteor.call('targetConv', value) ;
+        Player.update({_id: doc._id}, {$set: {"inventory.pistol.directTarget": value}});
 
             if (value != "void"){
                 Meteor.call('hubSend', doc.tag, ":pistol", "sightFB", "0");

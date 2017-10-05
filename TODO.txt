@@ -1,8 +1,36 @@
-Etablir des règles de bases et les données qui vont avec, dans un fichier à part
 ******** régler method lecture son
 
-probleme : va falloir commencer à gérer les comptes
+commencer à gérer les comptes
 
-remplacer tags par les pseudos
+TOUT mettre en _id ou en number
 
 changer fonction render() pour les stats
+
+sol 2 : 
+    -timeline et rezAt dans la db
+    -le cron ne sert qu'à vérifier la date des events
+
+
+cd /
+cd Program Files\MongoDB\Server\3.2\bin
+mongod -port 3001 --dbpath C:\wizar/applis/iot_app_0.4\.meteor\local\db
+
+cd /
+cd wizar/applis/iot_app_0.4
+set MONGO_URL=' '
+set MONGO_URL=mongodb://localhost:3001/db
+meteor
+
+cd /
+cd wizar/applis/iot_app_0.4
+
+meteor run android
+
+
+meteor add-platform android
+
+
+
+
+https://forums.meteor.com/t/meteor-stuck-at-starting-your-app/25592/7
+

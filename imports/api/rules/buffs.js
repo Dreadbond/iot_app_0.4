@@ -6,8 +6,8 @@ let world = World.find();
         
         if (lastEvent.TYPE == "barrier") {
 
-            Player.update({name: lastEvent.FROM }, {$set: {soundFile: "general/barrierCasted", soundFilePlayed: false}});
-            from = Player.find({name: lastEvent.FROM}).fetch()[0];
+            Player.update({number: lastEvent.FROM }, {$set: {soundFile: "general/barrierCasted", soundFilePlayed: false}});
+            from = Player.find({number: lastEvent.FROM}).fetch()[0];
 
             for (var i=0; i<lastEvent.TO.length; i++) {
                 target = Player.find({number: lastEvent.TO[i]}).fetch()[0];
@@ -31,7 +31,7 @@ let world = World.find();
                             },
                     });
 
-                    new barrierStop(target.name);
+                    new barrierStop(target.number);
                 }
             }
         } //barrier
@@ -43,7 +43,7 @@ function barrierStop(player){
         ()=> {
             console.log("barrierStop", player);
             Player.update(
-                {name: player},
+                {number: player},
                     {$set: {
                         "buffs.barrier.active": false,
                         soundFile: "general/barrierStop",

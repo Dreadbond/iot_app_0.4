@@ -128,28 +128,28 @@ Meteor.startup(() => {
     newPlayer.team = "red",
     newPlayer.number = "2";
     newPlayer.tag = "!22";
-    newPlayer.rangedTarget = [{number: 1,distance: 600},{number: 3,distance: 700},{number: 4,distance: 800}];
+    newPlayer.rangedTarget = [{number: "1",distance: 600},{number: "3",distance: 600},{number: "4",distance: 600}];
     Player.insert(newPlayer);
 
     newPlayer.name = "Dessloch";
     newPlayer.team = "red",
     newPlayer.number = "3";
     newPlayer.tag = "!33";
-    newPlayer.rangedTarget = [{number: 2,distance: 600},{number: 1,distance: 700},{number: 4,distance: 800}];
+    newPlayer.rangedTarget = [{number: "2",distance: 600},{number: "1",distance: 600},{number: "4",distance: 600}];
     Player.insert(newPlayer);
 
     newPlayer.name = "Vikti";
     newPlayer.team = "blue",
     newPlayer.number = "4";
     newPlayer.tag = "!44";
-    newPlayer.rangedTarget = [{number: 2,distance: 600},{number: 3,distance: 700},{number: 1,distance: 800}];
+    newPlayer.rangedTarget = [{number: "2",distance: 600},{number: "3",distance: 600},{number: "1",distance: 600}];
     Player.insert(newPlayer);
 
     newPlayer.name = "Rhea";
     newPlayer.team = "red",
     newPlayer.number = "5";
     newPlayer.tag = "!55";
-    newPlayer.rangedTarget = [{number: 2,distance: 600},{number: 3,distance: 700},{number: 1,distance: 800}];
+    newPlayer.rangedTarget = [{number: "2",distance: 600},{number: "3",distance: 600},{number: "1",distance: 600}];
     Player.insert(newPlayer);
 
     World.insert(defaultWorld);

@@ -5,16 +5,17 @@
         lastEvent = doc.event ;
 
     if (lastEvent.TYPE == "damage") {
+        if (lastEvent.hit_mode == "distance"){
 
-            Player.update({name: lastEvent.FROM }, {$set: {soundFile: "general/hit", soundFilePlayed: false}});
-            from = Player.find({name: lastEvent.FROM}).fetch()[0];
+            Player.update({number: lastEvent.FROM }, {$set: {soundFile: "general/hit", soundFilePlayed: false}});
+            from = Player.find({number: lastEvent.FROM}).fetch()[0];
 
 
             for (var i=0; i<lastEvent.TO.length; i++) {
                 victim = Player.find({number: lastEvent.TO[i]}).fetch()[0];
                     // console.log("from.team", from.team);
                     // console.log("lastEvent.TO[0]", lastEvent.TO[i]);
-                    // console.log("victim.team", victim.team, lastEvent.TO[i]);
+                    // console.log("victim.team", victim.team);
 
                     if (from.team != victim.team)
                     {
@@ -60,16 +61,31 @@
                                 });
                             }
                         }
-
                     }
+                }
+            }
+            else if (lastEvent.hit_mode== "melee") {
+                lastHit = World.find({"event.TYPE": "beenHit"}).fetch()[0] ;
+                ranged = Player.find({number: lastEvent.FROM}).fetch()[0];
+
+                lastHit = lastHit.event.FROM ;
+                ranged = ranged.rangedTarget ;
+                victim = "0";
+                    for (var i=0 ; i<ranged.length ; i++) {
+                        if (ranged[i].number == lastHit) {
+
+                            victim = lastHit ;
+                        }
+                    }
+                console.log("victim", victim)
             }
     } //damage
 
 
     if (lastEvent.TYPE == "heal") {
         
-                    //Player.update({name: lastEvent.FROM }, {$set: {soundFile: "general/hit", soundFilePlayed: false}});
-                    from = Player.find({name: lastEvent.FROM}).fetch()[0];
+                    //Player.update({number: lastEvent.FROM }, {$set: {soundFile: "general/hit", soundFilePlayed: false}});
+                    from = Player.find({number: lastEvent.FROM}).fetch()[0];
         
         
                     for (var i=0; i<lastEvent.TO.length; i++) {

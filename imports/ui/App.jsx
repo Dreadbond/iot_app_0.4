@@ -38,7 +38,7 @@ class App extends Component {
                 catch(e){console.log("Erreur envoi event manuel : ", e)}
                 
                 World.insert({
-                        event: messJson , createdAt: new Date() 
+                         event: messJson , createdAt: new Date() 
                         }
                         //,()=>{}Meteor.call('worldProcess');
                 );
@@ -47,18 +47,16 @@ class App extends Component {
   
   _newHubEvent(){
     var event = document.getElementById("manualHubText").value;
-    id = Player.find({name: "Dreadbond"}).fetch()[0];
-    id = id._id ;
+      try {
+        messJson = JSON.parse(event);
+      }
+      catch(e){console.log("Erreur envoi event manuel : ", e)}
 
-                try {
-                        messJson = JSON.parse(event);
-                }
-                catch(e){console.log("Erreur envoi event manuel : ", e)}
+      id = Player.find({tag: messJson.to}).fetch()[0]._id;
 
-                Meteor.call('writeDB', ()=> {
-                  Player.update({_id: id }, {$set: {inMessage: messJson, inMessageRead: false}});
-                });
-
+      Meteor.call('playerAction', ()=> {
+        Player.update({_id: id }, {$set: {inMessage: messJson, inMessageRead: false}});
+      });
   }
 
   _manualSend(){
@@ -77,16 +75,6 @@ class App extends Component {
       <Task key={task._id} task={task} />
     ));
   }
-
-  _fonctionTest() {
-  player.health = "arf";
-    Tracker.autorun(() => {
-    player = Player.find({name: "Dreadbond"}).fetch()[0];
-    }
-  );
-  return player.health ;
-} 
-
 
   render() {
 function stat(asked, asked2, asked3) {
@@ -119,6 +107,10 @@ function stat(asked, asked2, asked3) {
 <div id="left-column">
   <div id="player">
   <h3>Wizapp</h3>
+
+  <textarea id="playerName" rows="1" cols="10"> 
+            Dreadbond
+          </textarea>
 
          <p>{stat("name")} 
          <br/>ID {stat("_id")} 

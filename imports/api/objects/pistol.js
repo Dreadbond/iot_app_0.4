@@ -1,4 +1,4 @@
-let player = Player.find({name: "Dreadbond"});
+let player = Player.find({});  //name: "Dreadbond"
 let handle = player.observe({
   changed: function (doc, oldDoc) {
 
@@ -15,11 +15,13 @@ let handle = player.observe({
                 Meteor.call('hubSend', doc.tag, ":pistol", "shootFB", "1");
 
                 event = {};
-                event.FROM  = doc.name ;
+                event.FROM  = doc.number ;
                 event.target_mode = "directTarget";
                 event.TO    = [];
                 event.TO.push(doc.inventory.pistol.directTarget) ;
-                event.hit_mode = "insta" ;
+                event.hit_mode = "distance";
+                event.ammo_mode = "standard" ;
+                event.projectile_speed = "0" ;
                 event.TYPE  = "damage" ;
                 event.VALUE = 20 ;
 

@@ -1,4 +1,4 @@
-let player = Player.find({name: "Dreadbond"});
+let player = Player.find({});
 let handle = player.observe({
   changed: function (doc, oldDoc) {
 
@@ -16,14 +16,15 @@ let handle = player.observe({
                 Meteor.call('hubSend', doc.tag, ":grimoire", "barrier", "1");
 
                 event = {};
-                event.FROM  = doc.name ;
+                event.FROM  = doc.number ;
                 event.TO  = []  ;
                 for (var i=0; i<doc.rangedTarget.length; i++) {
                         if (doc.rangedTarget[i].distance < 650){
                         event.TO.push(doc.rangedTarget[i].number);
                         }
                     }
-                event.TO.push(doc.number);    
+                event.TO.push(doc.number);
+                event.hit_mode = "distance" ;
                 event.TYPE  = "barrier" ;
                 event.DURATION = 3000 ;
                 World.insert({ event: event, createdAt: Date() });
@@ -34,13 +35,14 @@ let handle = player.observe({
                     Meteor.call('hubSend', doc.tag, ":grimoire", "heal", "1");
     
                     event = {};
-                    event.FROM  = doc.name ;
+                    event.FROM  = doc.number ;
                     event.TO  = []  ;
                     for (var i=0; i<doc.rangedTarget.length; i++) {
                         if (doc.rangedTarget[i].distance < 650){
                         event.TO.push(doc.rangedTarget[i].number);
                         }
                     }
+                    event.hit_mode = "distance" ;
                     event.TYPE  = "heal" ;
                     event.VALUE = 20 ;
     
@@ -54,7 +56,7 @@ let handle = player.observe({
                 Meteor.call('hubSend', doc.tag, ":grimoire", "fireNova", "1");
                 //console.log(Object.keys(doc.inventory).length);
                 event = {};
-                event.FROM  = doc.name ;
+                event.FROM  = doc.number ;
                 event.TO  = []  ;
                 for (var i=0; i<doc.rangedTarget.length; i++) {
                         if (doc.rangedTarget[i].distance < 650){
@@ -62,6 +64,7 @@ let handle = player.observe({
                         }
                     }
                 event.TYPE  = "damage" ;
+                event.hit_mode = "distance" ;
                 event.DAMAGE_TYPE = "fire";
                 event.VALUE= 26 ;
                 event.DAMAGE_OVER_TIME= 5 ;

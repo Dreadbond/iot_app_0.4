@@ -36,9 +36,9 @@ function onData(incomingData)
             }
         catch(e){console.log("Erreur réception Ardu : ", e)}
 
-            //console.log(incomingData);
-        Meteor.call('writeDB', ()=> {
-            Player.update({name: "Dreadbond" }, {$set: {"inMessage": mess, "inMessageRead": false}});
+        console.log(incomingData);
+        Meteor.call('playerAction', ()=> {
+            Player.update({tag: mess.to }, {$set: {"inMessage": mess, "inMessageRead": false}});
         });
 
     //objects.general() ;

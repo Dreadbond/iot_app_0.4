@@ -11,7 +11,7 @@ if (typeof fields.wizar != 'undefined'){
             regen = Meteor.setInterval(
                 function(){
                     Player.update(
-                        {name: player.name},
+                        {number: player.number},
                             {$inc: {
                                 wizar: 4
                             }}
@@ -22,7 +22,7 @@ if (typeof fields.wizar != 'undefined'){
             );
 
             Player.update(
-                {name: player.name},
+                {number: player.number},
                     {$set: {
                         wizar_regen: true
                     }
@@ -33,7 +33,7 @@ if (typeof fields.wizar != 'undefined'){
         if (player.wizar >= 600) {
             Meteor.clearInterval(regen);
             Player.update(
-                {name: player.name},
+                {number: player.number},
                     {$set: {
                         wizar: 600,
                         wizar_regen: false
@@ -43,7 +43,7 @@ if (typeof fields.wizar != 'undefined'){
 
         if (player.wizar < 0){
             Player.update(
-                {name: player.name},
+                {number: player.number},
                     {$set: {
                         wizar: 0
                     }

@@ -24,12 +24,11 @@ meteor
 cd /
 cd wizar/applis/iot_app_0.4
 
-meteor run android
-
+meteor run android-device --mobile-server 192.168.0.12
 
 meteor add-platform android
 
-
+https://github.com/GroundMeteor/db
 
 
 https://forums.meteor.com/t/meteor-stuck-at-starting-your-app/25592/7

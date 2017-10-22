@@ -11,7 +11,7 @@ import Task from './Task.jsx';
 //http://buzz.jaysalvat.com/documentation/sound/
 
 
-class App extends Component {  
+class App extends Component {
   _refresh() {
     Meteor.call('button',  ()=> {
     });
@@ -52,7 +52,8 @@ class App extends Component {
       }
       catch(e){console.log("Erreur envoi event manuel : ", e)}
 
-      id = Player.find({tag: messJson.to}).fetch()[0]._id;
+      id = Player.find({tag: messJson.to}).fetch()[0];
+      id = id._id
 
       Meteor.call('playerAction', ()=> {
         Player.update({_id: id }, {$set: {inMessage: messJson, inMessageRead: false}});
@@ -85,7 +86,7 @@ function stat(asked, asked2, asked3) {
     else if (asked2) {asked = player[asked][asked2];}
     }
     catch(e){
-    }  
+    }
 
     if (asked == undefined) {asked = "???"};
 
@@ -93,6 +94,7 @@ function stat(asked, asked2, asked3) {
 
     return asked ;
 }
+
 
     return (
 <div id="interface">

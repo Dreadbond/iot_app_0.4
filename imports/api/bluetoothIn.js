@@ -72,7 +72,7 @@ Meteor.methods({
     DataToSend.value = value;
     DataToSend= JSON.stringify(DataToSend);
         // console.log("Envoi Ardu :", DataToSend);
-    sp1.write(DataToSend);
+    sp.write(DataToSend);
     },
 });
 
